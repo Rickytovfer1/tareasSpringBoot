@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vecinos</title>
+</head>
+<body>
+<h1>Lista de vecinos</h1>
+<table style="border: 1px solid black">
+    <tr th:if="${listaVecinos.size() == 0}">
+        <div class="alert alert-warning">
+            No hay vecinoa
+        </div>
+    </tr>
+    <div th:unless="${listaVecinos.isEmpty()}">
+        <tr th:each="vecino : ${listaVecinos}">
+
+            <td><span th:text="${vecino.nombre}"></span></td>
+            <td><span th:text="${vecino.apellidos}"></span></td>
+            <td><span th:text="${vecino.telefono}"></span></td>
+            <td>    <a th:href="@{/vecino/{id}(id=${vecino.id})}">
+                Ver detalle
+            </a></td>
+            <td>    <a th:href="@{/vecino/{id}(id=${vecino.id})}">
+                Eliminar
+            </a></td>
+        </tr>
+    </div>
+
+</table>
+</body>
+</html>
