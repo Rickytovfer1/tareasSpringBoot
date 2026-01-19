@@ -5,34 +5,45 @@
 
 ## 2) Repositorio (fork) y gestión de versiones
 - Repositorio base: https://github.com/profeInformatica101/tareasSpringBoot
-- Enlace a MI fork: [PON AQUÍ EL ENLACE CUANDO LO CREES]
+- Enlace a MI fork: https://github.com/Rickytovfer1/tareasSpringBoot.git
 - Nº de commits realizados: (mínimo 5)
 
 ## 3) Arquitectura
 Explica brevemente cómo has organizado:
-- Controller:
-- Service:
+- Controller: 
+- Service: 
 - Repository:
 - Entity:
 
 ## 4) Base de datos elegida (marca una)
 - [ ] H2
 - [ ] MySQL
-- [ ] PostgreSQL
+- [X] PostgreSQL
 
 ## 5) Configuración de la base de datos
 ### 5.1 Dependencias añadidas
-(Indica la dependencia del driver que has usado)
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 ### 5.2 application.properties / application.yml
-(Pega aquí tu configuración SIN contraseñas reales si es necesario)
+spring.application.name=Practica
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username=postgres
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+logging.level.org.hibernate.SQL=DEBUG
+
 
 ### 5.3 Pasos para crear la BD (si aplica)
 - MySQL: CREATE DATABASE ...
-- PostgreSQL: createdb ...
+- PostgreSQL: He creado un schema de postgre mediante el cliente gráfico de DBeaver
 
 ## 6) Cómo ejecutar el proyecto
-1. Requisitos (Java versión, Maven/Gradle, DB instalada si aplica)
+1. Requisitos (Java versión: 21, Maven/Gradle: Maven, DB instalada si aplica: Postgres)
 2. Comando de arranque:
    - ./mvnw spring-boot:run   (o equivalente)
 3. URL de acceso:
