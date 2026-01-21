@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>editar</title>
+</head>
+<body>
+<h1>Formulario</h1>
+<form th:object="${vecino}" th:action="@{/vecino/editar/{id}(id=${vecino.id})}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <label>Nombre</label> <input th:field="*{nombre}" /><br>
+    <label>Apellidos </label> <input th:field="*{apellidos}" /><br>
+    <label>Telefono </label> <input th:field="*{telefono}" /><br>
+    <input type="submit" value="enviar">
+</form>
+</body>
+</html>

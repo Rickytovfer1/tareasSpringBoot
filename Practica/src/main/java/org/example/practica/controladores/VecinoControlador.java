@@ -51,4 +51,20 @@ public class VecinoControlador {
         vecinoServicio.eliminarVecino(id);
         return "redirect:/listaVecinos";
     }
+
+    @GetMapping("/vecino/editar/{id}")
+    public String editarVecino(@PathVariable Integer id, Model model){
+        Vecino v = vecinoServicio.findById(id);
+        model.addAttribute("vecino",v);
+
+        return "editarVecino";
+    }
+
+    @PostMapping("/vecino/editar/{id}")
+    public String editarVecino(@PathVariable Integer id, @ModelAttribute("vecino") Vecino vecino, Model model) {
+        vecinoServicio.editarVecino(id, vecino);
+        model.addAttribute("listaVecinos", vecinoServicio.listarVecinos());
+
+        return "redirect:/listaVecinos";
+    }
 }
