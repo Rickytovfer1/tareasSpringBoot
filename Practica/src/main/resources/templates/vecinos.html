@@ -18,12 +18,14 @@
             <td><span th:text="${vecino.nombre}"></span></td>
             <td><span th:text="${vecino.apellidos}"></span></td>
             <td><span th:text="${vecino.telefono}"></span></td>
-            <td>    <a th:href="@{/vecino/{id}(id=${vecino.id})}">
-                Ver detalle
-            </a></td>
-            <td>    <a th:href="@{/vecino/{id}(id=${vecino.id})}">
-                Eliminar
-            </a></td>
+            <td>
+                <a th:href="@{/editar/{id}(id=${vecino.id})}"
+                   class="btn btn-primary">Actualizar</a>
+                <a th:href="@{vecino/eliminar/{id}(id=${vecino.id})}"
+                   class="btn btn-danger">Eliminar</a>
+                <a th:href="@{vecino/{id}(id=${vecino.id})}"
+                   class="btn btn-success">Ver info</a>
+            </td>
         </tr>
     </div>
 

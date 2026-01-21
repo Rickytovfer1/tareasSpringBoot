@@ -32,10 +32,8 @@ public class VecinoServicio {
         return vecino;
     }
 
-    public void borrarVecinoID(Integer idVecino){
-        Vecino vecino = vecinoRepositorio.findById(idVecino)
-                .orElseThrow(() -> new RuntimeException("No existe un vecino con este ID"));
-        vecinoRepositorio.deleteById(vecino.getId());
+    public void eliminarVecino(Integer id){
+        vecinoRepositorio.deleteById(id);
     }
 
     public void editarVecino(Integer idVecino, Vecino vecino){

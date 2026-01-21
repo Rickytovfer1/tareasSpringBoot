@@ -45,4 +45,10 @@ public class VecinoControlador {
 
         return "verVecino";
     }
+
+    @GetMapping("/vecino/eliminar/{id}")
+    public String eliminarVecino(@PathVariable Integer id){
+        vecinoServicio.eliminarVecino(id);
+        return "redirect:/listaVecinos";
+    }
 }
