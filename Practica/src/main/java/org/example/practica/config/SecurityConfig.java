@@ -1,5 +1,6 @@
 package org.example.practica.config;
 
+import org.example.practica.enumerados.Rol;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,33 +34,28 @@ public class SecurityConfig {
     }
 
     @Bean
-    UserDetailsService user(PasswordEncoder passwordEncoder){
-        UserDetails user1 = User.builder().username("user1")
-                .password(passwordEncoder.encode("user1")).roles("USER").build();
-        UserDetails admin1 = User.builder().username("admin1")
-                .password(passwordEncoder.encode("admin1")).roles("ADMIN").build();
-
-        return new InMemoryUserDetailsManager(user1, admin1);
-    }
-
-    @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         http.authorizeHttpRequests(auth -> auth
 
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+//                //Estaticos
+//                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 
+                //Publico
                 .requestMatchers("/", "/listaVecinos").permitAll()
 
-                .requestMatchers("/crearVecino/**", "/crearVecino/**").hasRole("ADMIN")
+                .requestMatchers("/crearVecino/**", "/crearVecino/**").hasRole(Rol.ADMIN.toString())
+
+                .requestMatchers("/editarVecino/**").hasAnyRole(Rol.MANAGER.toString(), Rol.ADMIN.toString())
 
                 .anyRequest().authenticated()
         );
 
         // login form
         http.formLogin(form -> form
+                .loginProcessingUrl("/api/auth/login")
                 .defaultSuccessUrl("/listaVecinos", true)
                 .permitAll()
         );
