@@ -2,19 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <title>Formulario Vecino</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
-<body>
-    <h1>Formulario</h1>
-    <form th:object="${vecino}" action="/crearVecino" method="post">
-        <input type="hidden" th:field="*{id}">
+<body class="bg-light">
 
-        <label>Nombre</label> <input th:field="*{nombre}" /><br>
-        <label>Apellidos </label> <input th:field="*{apellidos}" /><br>
-        <label>Telefono </label> <input th:field="*{telefono}" /><br>
-        <input type="submit" value="enviar">
-    </form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h3>Formulario Vecino</h3>
+                </div>
+
+                <div class="card-body">
+                    <form th:object="${vecino}" th:action="@{/crearVecino}" method="post">
+
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" th:field="*{nombre}" placeholder="Introduce el nombre">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" th:field="*{apellidos}" placeholder="Introduce los apellidos">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" th:field="*{telefono}" placeholder="Introduce el teléfono">
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Enviar
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -40,20 +40,15 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> auth
 
-//                //Estaticos
-//                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .requestMatchers("/listaVecinos/**").permitAll()
 
-                //Publico
-                .requestMatchers("/", "/listaVecinos").permitAll()
-
-                .requestMatchers("/crearVecino/**", "/crearVecino/**").hasRole(Rol.ADMIN.toString())
-
-                .requestMatchers("/editarVecino/**").hasAnyRole(Rol.MANAGER.toString(), Rol.ADMIN.toString())
+                .requestMatchers("/crearVecino/**").hasRole("ADMIN")
+                .requestMatchers("/vecino/eliminar/**").hasRole("ADMIN")
+                .requestMatchers("/vecino/editar/**").hasAnyRole("MANAGER", "ADMIN")
 
                 .anyRequest().authenticated()
         );
 
-        // login form
         http.formLogin(form -> form
                 .loginProcessingUrl("/api/auth/login")
                 .defaultSuccessUrl("/listaVecinos", true)

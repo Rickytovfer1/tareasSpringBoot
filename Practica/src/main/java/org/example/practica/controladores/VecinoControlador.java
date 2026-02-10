@@ -42,11 +42,11 @@ public class VecinoControlador {
     }
 
     @PostMapping("/crearVecino")
-    public String crearVecino(@ModelAttribute("producto") Vecino vecino, Model model) {
+    public String crearVecino(@ModelAttribute("vecino") Vecino vecino, Model model) {
         vecinoServicio.crearVecino(vecino);
         model.addAttribute("listaVecinos", vecinoServicio.listarVecinos());
 
-        return "vecinos";
+        return "redirect:/listaVecinos";
     }
 
     @GetMapping("/vecino/{id}")

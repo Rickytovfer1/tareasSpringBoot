@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.github.javafaker.Faker;
 
+import java.util.Random;
+
 @Component
 public class IniciarDatos implements CommandLineRunner {
 
@@ -41,8 +43,10 @@ public class IniciarDatos implements CommandLineRunner {
         for (int i = 0; i < 20; i++) {
             Vecino v = new Vecino();
             v.setNombre(Faker.instance().dog().name());
-            v.setTelefono(Faker.instance().artist().name());
             v.setApellidos(Faker.instance().artist().name());
+            int numero = 100_000_000 + new Random().nextInt(900_000_000);
+            v.setTelefono(String.valueOf(numero));
+
             servicio.crearVecino(v);
         }
 
